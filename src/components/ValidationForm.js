@@ -13,9 +13,9 @@ function ValidationForm() {
     <div>
       <Formik initialValues={
         {
-        questions: [{ question: '',options:[], correctOption:'' }]
+          questions: [{ question: '', options: [], correctOption: '' }]
         }
-        }
+      }
         validationSchema={checkSchema}
         onSubmit={(values) => { console.log(values) }}>
         {(formik) =>
@@ -41,10 +41,9 @@ function ValidationForm() {
                                       {`Question:${index + 1}`}
                                     </label>
                                     <Field type='text' className='form-control' name={`questions.${index}.question`} />
-                                    
                                   </Col>
                                   <Col md={4} className='d-flex justify-content-end mt-3'>
-                                    <Button className='btn btn-primary m-2' onClick={() => arrayHelpers.insert(formik.values.questions.length + 1, { question: '' })}>+</Button>
+                                    <Button className='btn btn-primary m-2' onClick={() => arrayHelpers.insert(formik.values.questions.length + 1, { question: '',options:[],correctOption:'' })}>+</Button>
                                     <Button className='btn btn-danger m-2' onClick={() => arrayHelpers.remove(index)}>-</Button>
                                   </Col>
                                   <ErrorMessage component='span' className='text-danger' name={`questions.${index}.question`} />
@@ -55,11 +54,11 @@ function ValidationForm() {
                                   <Col>
                                     <Row>
                                       <Col md={1} className='mt-1'>
-                                      <Field type='radio' name={`questions[${index}].correctOption`}  value='1' className='mt-4' />
+                                        <Field type='radio' name={`questions[${index}].correctOption`} value='1' className='mt-4' />
                                       </Col>
-              
+
                                       <Col md={11}>
-                                        
+
                                         <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index}`} />
                                         <ErrorMessage component='span' className='text-danger' name={`questions.${index}.options`} />
                                       </Col>
@@ -68,38 +67,38 @@ function ValidationForm() {
                                   <Col>
                                     <Row>
                                       <Col md={1} className='mt-1'>
-                                      <Field type='radio' name={`questions[${index}].correctOption`} value='2' className='mt-4' />
+                                        <Field type='radio' name={`questions[${index}].correctOption`} value='2' className='mt-4' />
                                       </Col>
                                       <Col md={11}>
-                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index+1}`} />
+                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index + 1}`} />
                                         <ErrorMessage component='span' className='text-danger' name={`questions.${index}.options`} />
                                       </Col>
                                     </Row>
                                   </Col>
                                 </Row>
                                 <Row>
-                                <Col>
+                                  <Col>
                                     <Row>
                                       <Col md={1} className='mt-1'>
-                                        <Field type='radio' name={`questions[${index}].correctOption`}  value='3' className='mt-4' />
+                                        <Field type='radio' name={`questions[${index}].correctOption`} value='3' className='mt-4' />
                                       </Col>
                                       <Col md={11}>
-                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index+2}`} />
+                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index + 2}`} />
                                       </Col>
                                     </Row>
                                   </Col>
                                   <Col>
                                     <Row>
                                       <Col md={1} className='mt-1'>
-                                      <Field type='radio' name={`questions[${index}].correctOption`}  value='4'  className='mt-4' />
+                                        <Field type='radio' name={`questions[${index}].correctOption`} value='4' className='mt-4' />
                                       </Col>
                                       <Col md={11}>
-                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index+3}`} />
+                                        <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index + 3}`} />
                                       </Col>
                                     </Row>
-                                    
+
                                   </Col>
-                                  <ErrorMessage component='span' className='text-danger' name={`questions[${index}].correctOption`} />
+                                  <ErrorMessage component='span' className='text-danger' name={`questions.${index}.correctOption`} />
                                 </Row>
                               </Container>
 

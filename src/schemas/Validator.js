@@ -6,9 +6,6 @@ const checkSchema=Yup.object().shape({
         Yup.object().shape({
             question:Yup.string().required("This field is required"),
             correctOption:Yup.string().required("Please select an option"),
-            // options:Yup.array(
-            //     Yup.string().required("This field is required")
-            // ).min(2)
             options:Yup.array().min(2,"These options are required")
         })
     )
