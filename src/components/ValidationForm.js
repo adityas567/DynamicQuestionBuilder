@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import checkSchema from '../schemas/Validator';
 
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 
@@ -10,9 +11,12 @@ function ValidationForm() {
 
   return (
     <div>
-      <Formik initialValues={{
+      <Formik initialValues={
+        {
         questions: [{ question: '',options:[], correctOption:'' }]
-      }}
+        }
+        }
+        validationSchema={checkSchema}
         onSubmit={(values) => { console.log(values) }}>
         {(formik) =>
         (
@@ -37,11 +41,13 @@ function ValidationForm() {
                                       {`Question:${index + 1}`}
                                     </label>
                                     <Field type='text' className='form-control' name={`questions.${index}.question`} />
+                                    
                                   </Col>
                                   <Col md={4} className='d-flex justify-content-end mt-3'>
                                     <Button className='btn btn-primary m-2' onClick={() => arrayHelpers.insert(formik.values.questions.length + 1, { question: '' })}>+</Button>
                                     <Button className='btn btn-danger m-2' onClick={() => arrayHelpers.remove(index)}>-</Button>
                                   </Col>
+                                  <ErrorMessage component='span' className='text-danger' name={`questions.${index}.question`} />
                                 </Row>
                               </Container>
                               <Container>
@@ -51,8 +57,11 @@ function ValidationForm() {
                                       <Col md={1} className='mt-1'>
                                       <Field type='radio' name={`questions[${index}].correctOption`}  value='1' className='mt-4' />
                                       </Col>
+              
                                       <Col md={11}>
+                                        
                                         <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index}`} />
+                                        <ErrorMessage component='span' className='text-danger' name={`questions.${index}.options`} />
                                       </Col>
                                     </Row>
                                   </Col>
@@ -63,6 +72,7 @@ function ValidationForm() {
                                       </Col>
                                       <Col md={11}>
                                         <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index+1}`} />
+                                        <ErrorMessage component='span' className='text-danger' name={`questions.${index}.options`} />
                                       </Col>
                                     </Row>
                                   </Col>
@@ -87,7 +97,9 @@ function ValidationForm() {
                                         <Field type='text' className='form-control mt-3' name={`questions.${index}.options.${index+3}`} />
                                       </Col>
                                     </Row>
+                                    
                                   </Col>
+                                  <ErrorMessage component='span' className='text-danger' name={`questions[${index}].correctOption`} />
                                 </Row>
                               </Container>
 
